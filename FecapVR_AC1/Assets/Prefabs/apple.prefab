@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 30656487958977343}
   - component: {fileID: 8411785131903833250}
   - component: {fileID: -4208517454300788005}
-  m_Layer: 0
+  - component: {fileID: 75546127157082324}
+  m_Layer: 3
   m_Name: apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,3 +141,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &75546127157082324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9155737061694121989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e72eda34ce3f041a4ab845b910047b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Carregar
+  pontoSoltar: {fileID: 0}
+  pontoCarregar: {fileID: 0}

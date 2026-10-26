@@ -23,12 +23,20 @@ public class Carregar : MonoBehaviour
         fireOne = joaozinho.Player.FireOne;
         fireOne.Enable();
         fireTwo.Enable();
-        
+
     }
+
     bool soltou = false;
     bool carregando = false;
+
+    private void Start()
+    {
+        pontoCarregar = GameObject.FindGameObjectWithTag("PontoCarregar").GetComponent<Transform>();
+        pontoSoltar = pontoCarregar;
+    }
     public void OnPointerDown()
     {
+        print("interacao funfou");
         gameObject.transform.position=pontoCarregar.position;
         rb.isKinematic = true;
         carregando = true;
