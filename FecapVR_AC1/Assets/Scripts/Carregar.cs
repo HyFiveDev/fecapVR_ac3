@@ -32,7 +32,7 @@ public class Carregar : MonoBehaviour
     private void Start()
     {
         pontoCarregar = GameObject.FindGameObjectWithTag("PontoCarregar").GetComponent<Transform>();
-        pontoSoltar = pontoCarregar;
+        pontoSoltar = GameObject.FindGameObjectWithTag("PontoSoltar").GetComponent<Transform>();
     }
     public void OnPointerDown()
     {

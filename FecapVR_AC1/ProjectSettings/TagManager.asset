@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PontoCarregar
+  - PontoSoltar
   layers:
   - Default
   - TransparentFX

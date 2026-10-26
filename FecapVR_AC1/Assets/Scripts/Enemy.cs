@@ -1,63 +1,45 @@
+using System.Collections;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    NavMeshAgent navMeshAgent;
+    [SerializeField]
+    Transform alvo;
+    private Rigidbody rb;
     private Animator anim;
-    [Header("Referências")]
-    [SerializeField] public Transform player;
-    [SerializeField] public GameObject deathCanvas;
-    public int moviment0 = 0;
-    Rigidbody rb;
 
-    [Header("Configurações")]
-    public float speed = 3f;
-    private bool playerDead = false;
-    private bool moving = false;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        //StartCoroutine("AcharPlayer");
+        StartCoroutine(AcharPlayer());
     }
-    
+
+    // Update is called once per frame
     void Update()
     {
-        if (player == null || playerDead)
-            return;
-
-        // Faz o inimigo olhar para o jogador
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            player.position,
-            speed * Time.deltaTime
-        );
-
-        if (rb.linearVelocity.magnitude > moviment0)
-        {
-            anim.SetBool("isWalking", true);
-        }
-        
-            
+        anim.SetBool("isWalking", rb.linearVelocity.x != 0 || rb.linearVelocity.z != 0);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    public void OnPointerDown()
     {
-        if (collision.CompareTag("Player"))
+        gameObject.SetActive(false);
+        Destroy(gameObject, 0.5f);
+    }
+
+    IEnumerator AcharPlayer()
+    {
+        WaitForSeconds tempo = new WaitForSeconds(0.2f);
+        while (true)
         {
-            playerDead = true;
-            
-            //Ativa animação de morte
-            anim.SetTrigger("attaking");
+            navMeshAgent.SetDestination(alvo.position);
+            yield return tempo;
 
-            // Mostra o Canvas de morte
-            deathCanvas.SetActive(true);
-
-            // Desativa o jogador
-            collision.gameObject.SetActive(false);
-
-            // Pausa o jogo
-            Time.timeScale = 0f;
         }
     }
 }
